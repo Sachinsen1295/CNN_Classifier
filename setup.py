@@ -10,6 +10,8 @@ AUTHOR_EMAIL = "sachin.sen1295@gmail.com"
 with open("README.md", "r", encoding="utf-8") as f:
     LONG_DESCRIPTION=f.read()
 
+with open("LICENSE", 'r') as L:
+    LICENSE = L.read()
 
 setuptools.setup(
                  name=SOURCE_REPO,
@@ -20,6 +22,7 @@ setuptools.setup(
                  long_description=LONG_DESCRIPTION,
                  long_description_content = "text/markdown",
                  url=f"https://github.com/{AUTHOR_NAME}/{REPO_NAME}",
+                 license = LICENSE,
                  
                   project_urls={
                       
