@@ -9,6 +9,8 @@ from typing import Any
 from ensure import ensure_annotations   # to fix the output in what format to receive 
 from box.exceptions import BoxValueError
 from box import ConfigBox
+import tensorflow as tf
+from tqdm import tqdm                                       # to have a process bar
 
 
 
@@ -26,9 +28,9 @@ def save_json():
 def load_json():
     pass
 
-@ensure_annotations
-def save_mode():
-    pass
+#@ensure_annotations
+def save_model(path:Path , model:tf.keras.Model()):
+    model.save(str(path))
 
 @ensure_annotations
 def load_model():

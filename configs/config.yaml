@@ -8,3 +8,7 @@ DATA_INGESTION:
   UNZIP_DIR : artifacts/data_ingestion
 
 
+PREPARE_BASE_MODEL:
+  ROOT_DIR : artifacts/prepare_base_model
+  BASE_MODEL_PATH: artifacts/prepare_base_model/base_model.h5
+  UPDATED_BASE_MODEL_PATH: artifacts/prepare_base_model/base_model_updated.h5
