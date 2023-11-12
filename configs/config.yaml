@@ -17,7 +17,10 @@ TRAINING:
   ROOT_DIR : artifacts/training
   TRAINED_MODEL_PATH : artifacts/training/model.h5
   
-
 training:
   root_dir: artifacts/training
   trained_model_path: artifacts/training/model.h5
+
+EVALUATION:
+  PATH_OF_TRAINED_MODEL : artifacts/training/model.h5
+  TRAINIG_DATA : artifacts/data_ingestion/PetImages

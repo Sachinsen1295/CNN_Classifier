@@ -21,8 +21,11 @@ def read_yaml(path_to_yaml : Path) -> ConfigBox:
         return ConfigBox(content)
     
 @ensure_annotations
-def save_json():
-    pass
+def save_json(path:Path , data) :
+    with open (path ,"w") as data_json:
+        json.dump(data,data_json, indent=4)
+    
+
 
 @ensure_annotations
 def load_json():

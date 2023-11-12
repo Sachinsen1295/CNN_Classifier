@@ -1,5 +1,5 @@
 from CNNClassifier.utils.utils import read_yaml, create_dir
-from CNNClassifier.entity.config_entity import DataIngestionConfig,PrepareBaseModelConfig,TrainingConfig
+from CNNClassifier.entity.config_entity import DataIngestionConfig,PrepareBaseModelConfig,TrainingConfig,EvaluationConig
 from CNNClassifier.constants import CONFIG_FILE_PATH, PARAM_FILE_PATH
 from pathlib import Path
 import os
@@ -60,7 +60,18 @@ class ConfigurationManager:
 
         return training_config 
     
+    def get_validation_config(self) -> EvaluationConig:
+           evaluation = self.config.EVALUATION
+           eval_config = EvaluationConig(
+                  path_of_model=evaluation.PATH_OF_TRAINED_MODEL,
+                  training_data= evaluation.TRAINIG_DATA,
+                  all_params= self.params,
+                  params_image_size= self.params.IMAGE_SIZE,
+                  params_batch_size= self.params.BATCH_SIZE
+           )
 
+           return eval_config
+           
 
             
 
