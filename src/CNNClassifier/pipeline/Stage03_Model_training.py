@@ -5,7 +5,7 @@ from CNNClassifier.constants import *
 
 try:
     config = ConfigurationManager()
-
+  
     training_config = config.get_training_config()
     training = Training(config=training_config)
     training.get_base_model()

@@ -1,5 +1,5 @@
 from CNNClassifier.utils.utils import read_yaml, create_dir
-from CNNClassifier.entity.config_entity import DataIngestionConfig,PrepareBaseModelConfig,TrainingModelConfig
+from CNNClassifier.entity.config_entity import DataIngestionConfig,PrepareBaseModelConfig,TrainingConfig
 from CNNClassifier.constants import CONFIG_FILE_PATH, PARAM_FILE_PATH
 from pathlib import Path
 import os
@@ -40,29 +40,25 @@ class ConfigurationManager:
                 )
             return prepare_base_model_config
     
+    def get_training_config(self) -> TrainingConfig:
+        training = self.config.training
+        prepare_base_model = self.config.PREPARE_BASE_MODEL
+        params = self.params
+        training_data = os.path.join(self.config.DATA_INGESTION.UNZIP_DIR, "PetImages")
+        create_dir([Path(training.root_dir)])
 
-    def get_training_config(self) -> TrainingModelConfig:
-            training = self.config.TRAINING
+        training_config = TrainingConfig(
+            root_dir=Path(training.root_dir),
+            trained_model_path=Path(training.trained_model_path),
+            updated_base_model_path=Path(prepare_base_model.UPDATED_BASE_MODEL_PATH),
+            training_data=Path(training_data),
+            params_epochs=params.EPOCHS,
+            params_batch_size=params.BATCH_SIZE,
+            params_is_augmentation=params.AUGMENTATION,
+            params_image_size=params.IMAGE_SIZE
+        )
 
-            prepare_base_model = self.config.PREPARE_BASE_MODEL
-
-            params = self.params
-
-            training_data = os.path.join(self.config.DATA_INGESTION.UNZIP_DIR , "PetImages")
-
-            create_dir([Path([training.ROOT_DIR])])
-
-            training_config = TrainingModelConfig(
-                    root_dir= Path(training.ROOT_DIR),
-                    trained_model_path= Path(training.TRAINED_MODEL_PATH),
-                    updated_base_model_path= Path(prepare_base_model.UPDATED_BASE_MODEL_PATH),
-                    training_data= Path(training_data),
-                    params_epochs= params.EPOCHS,
-                    params_batch_size= params.BATCH_SIZE,
-                    params_is_augmentation=params.AUGMENTATION,
-                    params_image_size= params.IMAGE_SIZE
-                    )
-            return training_config
+        return training_config 
     
 
 
