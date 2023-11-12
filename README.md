@@ -44,3 +44,8 @@ mypy_path = "src"
 ignore_missing_imports = true
 ```
 
+#### To run streamlit 
+
+```
+streamlit run app.py
+```
